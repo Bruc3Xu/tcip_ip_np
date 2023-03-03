@@ -30,16 +30,16 @@ int main(int argc, char *argv[]) {
     error_handling("connect() error");
   }
   char msg[30];
-  int nbytes = read(sock, msg, sizeof(msg));
-  if (nbytes == -1) {
-    error_handling("error reading");
-  } else if (nbytes == 0) {
-    printf("read EOF\n");
-  } else {
-    printf("read %d bytes data\n", nbytes);
-    printf("msg from server: %s", msg);
-  }
 
+  int str_len = 0, recv_size = 0, idx = 0;
+  while (recv_size = read(sock, &msg[idx++], 1)) {
+    if (recv_size == -1) {
+      error_handling("read() error");
+    }
+    str_len += recv_size;
+  }
+  printf("read %d bytes data\n", str_len);
+  printf("msg from server: %s", msg);
   close(sock);
   return 0;
 }

@@ -5,7 +5,7 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
-void sig_interrupt(char *msg);
+
 void error_handling(char *msg);
 
 int main(int argc, char *argv[]) {

@@ -32,22 +32,30 @@ int main(int argc, char *argv[]) {
   }
   char msg[BUF_SIZE];
 
-  int str_len = 0, recv_size = 0, idx = 0;
+  int str_len = 0, recv_size = 0, recv_cnt = 0;
   while (1) {
-    fputs("input msg: ", stdout);
+    fputs("input msg(q/Q to quit): ", stdout);
     fgets(msg, BUF_SIZE, stdin);
     if (!strcmp(msg, "q\n") || !strcmp(msg, "Q\n")) {
       break;
     }
-    write(sock, msg, BUF_SIZE - 1);
-    int str_len = 0, recv_size = 0, idx = 0;
-    while (recv_size = read(sock, &msg[idx++], 1)) {
-      if (recv_size == -1) {
+    str_len = write(sock, msg, strlen(msg));  // 需要考虑数据发不完的情况
+
+    // int recv_size = read(sock, &msg[idx++], BUF_SIZE - 1);  // 需要考虑收到多个数据的情况
+
+    /* 使用下面的方式，可以在确定发送数据大小的情况下，完整读取服务器发回的数据*/
+    while (recv_size < str_len) {
+      recv_cnt = read(sock, &msg, BUF_SIZE - 1);
+      if(recv_cnt == -1){
         error_handling("read() error");
+      }else {
+        recv_size += recv_cnt;
       }
-      str_len += recv_size;
     }
-    msg[str_len] = 0;
+    // 更多见chapter5应用层协议设计
+    /*========================================================*/
+
+    msg[recv_size] = 0;
     printf("read %d bytes data\n", str_len);
     printf("msg from server: %s", msg);
   }

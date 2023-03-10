@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <strings.h>
 #include <sys/socket.h>
+#include <unistd.h>
 
 void error_handling(char *msg) {
   fputs(msg, stderr);
@@ -37,11 +38,11 @@ int main(int argc, char *argv[]) {
 
   int str_len = 0;
 
-  for (;;) {
+  for (int i = 0; i < 3; ++i) {
+    sleep(5);
     str_len = recvfrom(server_sock, msg, 1024, 0,
                        (struct sockaddr *)&client_addr, &client_addr_len);
-    sendto(server_sock, msg, str_len, 0, (const struct sockaddr *)&client_addr,
-           client_addr_len);
+    printf("recv message %d: %s\n", i + 1, msg);
   }
   close(server_sock);
 

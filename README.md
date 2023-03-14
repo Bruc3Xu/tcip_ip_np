@@ -1,5 +1,5 @@
 # TCP/IP Network Programming
-TCP/IP网络编程在Linux下的笔记和示例代码。
+TCP/IP网络编程在Linux下的笔记和示例代码，不包含每一章的Windows网络编程和第三部分《基于Windows的编程》。
 
 [chapter1 理解网络编程和套接字](./chapter1/README.md)
 
@@ -25,13 +25,20 @@ TCP/IP网络编程在Linux下的笔记和示例代码。
 
 [chapter12 I/O复用](./chapter12/README.md)
 
-[chapter1](./chapter1/README.md)
-[chapter1](./chapter1/README.md)
-[chapter1](./chapter1/README.md)
-[chapter1](./chapter1/README.md)
-[chapter1](./chapter1/README.md)
-[chapter1](./chapter1/README.md)
-[chapter1](./chapter1/README.md)
-[chapter1](./chapter1/README.md)
-[chapter1](./chapter1/README.md)
-[chapter1](./chapter1/README.md)
+[chapter13 多种I/O函数](./chapter13/README.md)
+
+[chapter14 多播与广播](./chapter14/README.md)
+
+[chapter15 套接字和标准I/O](./chapter15/README.md)
+
+[chapter16 关于I/O流分离的其他内容](./chapter16/README.md)
+
+[chapter17 优于select的epoll](./chapter17/README.md)
+
+[chapter18 多线程服务器端的实现](./chapter18/README.md)
+
+chapter19-chapter22略
+
+[chapter24 制作HTTP服务器端](./chapter24/README.md)
+
+[chapter25 进阶内容](./chapter25/README.md)

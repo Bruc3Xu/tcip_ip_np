@@ -31,3 +31,13 @@ struct ip_mreq{
     struct in_addr imr_interface;
 };
 ```
+## 广播
+广播也可以一次性向多个主机发送数据，但不同于组播，只能向同一个网络中的主机传输数据。
+- 直接广播：如向192.12.34中的所有主机发送数据，目的地址设为192.12.34.255（即主机地址位全部设为1）。
+- 本地广播：如192.32.24网络中的逐句向255.255.255.255传输数据时，数据传输到网络中的所有主机。
+
+```c
+int sock = socket(PF_INET, SOCK_DGRAM, 0);
+int bcast = 1;
+setsockopt(sock, SL_SOCKET, SO_BROADCAST, (void*)&bcast, sizeof(bcast));
+```

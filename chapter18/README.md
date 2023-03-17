@@ -33,15 +33,44 @@ int pthread_join (pthread_t thread_id, void **thread_return);
 ## 线程同步
 
 ### mutex
+使用mutex来保护临界区的数据。
+```c
+int pthread_mutex_init (pthread_mutex_t *mutex,
+			       const pthread_mutexattr_t *mutexattr);
+int pthread_mutex_destroy (pthread_mutex_t *mutex);
+
+int pthread_mutex_lock (pthread_mutex_t *mutex);
+
+int pthread_mutex_unlock (pthread_mutex_t *mutex);
+```
+需要注意的是，需要考虑mutex加锁的范围，合理使用。
+
+### semaphore
 
 ```c
+#include <semaphore.h>
+
+int sem_init(sem_t *sem, int pshared, unsigned int value);
+// pshared: 0对应多线程共享，sem应该对于所有线程是可见的（全局变量或者堆上的变量）
+// pshared > 0：对应多进程共享，sem位于共享内存区域（子进程和父进程共享）。
+// value：初始值
 
 
+int sem_post(sem_t *sem);
+// value值加一
+
+int sem_wait(sem_t *sem);
+// value值减一
+// 在value为0时调用，会阻塞
 
 ```
 
 
-### semaphore
-
 ### 线程销毁
+相对于pthread_join，pthread_detach不会引起主线程阻塞。
+```c
+int pthread_detach(pthread_t thread);
+```
 
+## 多线程服务端
+书中实现的是one thread one connection。

@@ -41,4 +41,7 @@ chapter19-chapter22略
 
 [chapter24 制作HTTP服务器端](./chapter24/README.md)
 
-[chapter25 进阶内容](./chapter25/README.md)
+chapter25略
+
+
+TODO:chapter18, chapter5 README.dm

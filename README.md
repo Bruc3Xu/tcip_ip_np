@@ -42,6 +42,3 @@ chapter19-chapter22略
 [chapter24 制作HTTP服务器端](./chapter24/README.md)
 
 chapter25略
-
-
-TODO:chapter24, chapter5 README.md

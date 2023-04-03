@@ -9,7 +9,7 @@
 #define MAX_CLNTS 256
 #define BUF_SIZE 100
 
-void *handle_clnt(void *arg);
+void *request_handler(void *arg);
 void error_handling(char *msg);
 void send_msg(char *msg, int size);
 
@@ -54,7 +54,7 @@ int main(int argc, char *argv[]) {
     clnt_socks[clnt_cnt++] = clnt_sock;
     pthread_mutex_unlock(&mutex);
 
-    pthread_create(&thd, NULL, handle_clnt, (void *)&clnt_sock);
+    pthread_create(&thd, NULL, request_handler, (void *)&clnt_sock);
     pthread_detach(thd);
     printf("conencted client IP: %s\n", inet_ntoa(clnt_addr.sin_addr));
   }
@@ -68,7 +68,7 @@ void error_handling(char *msg) {
   exit(1);
 }
 
-void *handle_clnt(void *arg) {
+void *request_handler(void *arg) {
   int sock = *((int *)arg);
   int str_len = 0;
   char msg[BUF_SIZE];
